@@ -13,9 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
+from bossblog import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # url(r'^', include('bossblog.urls')),
+    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^archive/$', views.ArichiveView.as_view(), name='archive'),
+    url(r'^tags/$', views.TagView.as_view(), name='tags'),
+    url(r'^tags/(?P<tag_name>\w+)/$', views.TagDetailView.as_view(), name='tag_name'),
+    url(r'^blog/(?P<blog_id>\d+)/$', views.BlogDetailView.as_view(), name='blog_id'),
+
+
 ]
