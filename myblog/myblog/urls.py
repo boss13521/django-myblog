@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from bossblog import views
+from bossblog import feeds
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,6 +26,6 @@ urlpatterns = [
     url(r'^tags/$', views.TagView.as_view(), name='tags'),
     url(r'^tags/(?P<tag_name>\w+)/$', views.TagDetailView.as_view(), name='tag_name'),
     url(r'^blog/(?P<blog_id>\d+)/$', views.BlogDetailView.as_view(), name='blog_id'),
-
+    url(r'^rss/$', feeds.BlogRssFeed(), name='rss'),
 
 ]
